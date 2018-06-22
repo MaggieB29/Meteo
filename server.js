@@ -13,7 +13,6 @@ app.get('/', (request, response) => {
 });
 
 app.get('/weather', (req, res) => {
-    //res.send(req.query.cidade);
     const GoogleAPI = 'AIzaSyDMgsp68WJ4MwNY9u66TY2nuDGiTtaS9gc';
     const DarkSky = '85693fe78a243ea6c99ec85b0f8263ef';
 
@@ -42,11 +41,19 @@ request({
         var apparentTemperature = DSbody.currently.apparentTemperature;
 
         console.log(temperature, apparentTemperature);
+        res.render('resposta.hbs', {
+            text01: temperature,
+            text02: apparentTemperature
+        })
     })
 });
+    
+    //res.send(req.query.cidade);
 });
 
 app.listen(3002);
+
+//PARA A LOCAL STORAGE IR À APP DA NOTEAPP
 
 //ERROS
 
