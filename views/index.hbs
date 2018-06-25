@@ -4,10 +4,73 @@
         <meta charset="utf-8"/>
     </head>
     <body>
-        <h1>HELLO</h1>
+        <h1>Hello</h1>
         <form action="/weather">
             <input type="text" name="cidade" id="cidade">
             <button type="submit">Give me Weather!</button>
         </form>
+
+        <form class="form-horizontal">                      
+          <div class="row">
+            <div class="col-md-6">
+              <p id="favs-lista-texto">You don't have favs yet!</p>
+              <ul class="list-group" id="favs-lista">
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" id="submit" class="btn btn-primary">Add Fav</button>
+            <button type="reset" id="clean"  class="btn btn-secondary">Clean up</button>
+        </div>
+      </form>
     </body>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function () {
+
+       $("#favs-lista").hide();
+       $("#item").focus();
+
+      /*
+       * check browser supports local storage
+       */
+      if (localStorage) {
+
+        var favsLista_string = localStorage.getItem('favsLista');
+        if (favsLista_string) {
+          $("#favs-lista-texto").hide();
+          $("#favs-lista").show();
+          var favsLista = JSON.parse(favsLista_string);
+          console.log(favsLista);
+          $.each(favsLista, (index, text) => {
+            $("#favs-lista").append(`<li class="list-group-item">${text}</li>`);
+          });
+        }
+        
+        //Apaga os favs
+        $("form")
+          .on('reset', function(){
+            console.log('cleaning!...');
+            localStorage.clear();
+            location.reload();
+          })
+
+          //Adiciona os favs
+        .submit(function(){
+           var favsLista_string = localStorage.getItem('favsLista');
+           var favsLista =[];
+
+           if(favsLista_string) {
+               favsLista = JSON.parse(favsLista_string);
+           }
+           favsLista.push($("#cidade").val());
+           localStorage.setItem('favsLista', JSON.stringify(favsLista));
+           console.log(localStorage);
+        })
+      }
+    });
+    </script>
 </html>
