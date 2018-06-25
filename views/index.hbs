@@ -46,7 +46,8 @@
           var favsLista = JSON.parse(favsLista_string);
           console.log(favsLista);
           $.each(favsLista, (index, text) => {
-            $("#favs-lista").append(`<li class="list-group-item">${text}</li>`);
+            //var addressEncoded = encodeURIComponent(text);
+            $("#favs-lista").append(`<li class="list-group-item"><a href="http://localhost:3002/weather?cidade=${text}">${text}</a></li>`);
           });
         }
         
