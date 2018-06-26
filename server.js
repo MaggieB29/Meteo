@@ -39,11 +39,17 @@ request({
 
         var temperature = DSbody.currently.temperature;
         var apparentTemperature = DSbody.currently.apparentTemperature;
+        var precipProbability = DSbody.currently.precipProbability;
+        var highestTemperature = DSbody.daily.data[0].temperatureMax;
+        var lowestTemperature = DSbody.daily.data[0].temperatureLow;
 
-        console.log(temperature, apparentTemperature);
+        console.log(temperature, apparentTemperature, precipProbability, highestTemperature, lowestTemperature);
         res.render('resposta.hbs', {
-            text01: temperature,
-            text02: apparentTemperature
+            text01: highestTemperature,
+            text02: lowestTemperature,
+            text03: temperature,
+            text04: apparentTemperature,
+            text05: precipProbability
         })
     })
 });

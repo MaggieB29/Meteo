@@ -1,16 +1,27 @@
 {
   "name": "meteo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
     "hbs": "^4.0.1",
-    "request": "^2.87.0"
-  }
+    "request": "^2.87.0",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaggieB29/Meteo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MaggieB29/Meteo/issues"
+  },
+  "homepage": "https://github.com/MaggieB29/Meteo#readme",
+  "description": ""
 }
