@@ -4,11 +4,32 @@
         <meta charset="utf8"/>
         <title>What's the weather?</title>
     </head>
+     <style>
+          * {
+              margin: 0%;
+          }
+          body{
+            font-family: Verdana, sans-serif;
+            text-align:center;
+            font-size: 12px;
+                        background-image: url("images/6.jpg");
+                        background-size: contain;
+                        
+          }
+            h1{
+            margin-top: 8%;
+            margin-bottom: 3%;
+            text-align: center;
+          }
+          #img{
+              margin-bottom: 3%
+          }
+        </style>
     <body>
         <h1>{{local}}</h1>
         <div id="conteudo" class="slideshow-container">
             <div class="mySlides fade">
-                <img width="400px" height="400px" src="imgs/1.png" style="width:100%">
+                <img id="img" width="100px" height="100px" src="images/1.png" style="width:100%">
                 <h4>Temperatura máxima</h4>
                 <p>
                     {{text01}}
@@ -33,7 +54,6 @@
                 <p>
                     {{text06}}
                 </p>
-                <div class="text">Hoje</div>
             </div>
         
         </div>
