@@ -19,20 +19,39 @@
          #titulo{
             margin-top: 4%;
             margin-bottom: 2%;
+            margin-left: 10%;
             float: left;
-            width: 50%;
+            width: 40%;
             height: 12%;
+            background-color: aqua;
           }
           #titulo h1{
             font-size: 40px;
-            float: right;
-            margin-right: 25%;
+            float: left;
+            margin-left: 37.5%;
+          }
+          #tituloErro{
+              font-size: 30px;
+              text-align: center;
+              margin-top: 4%;
+              margin-bottom: 5%;
+          }
+          #erro1{
+              color: red;
+              text-align: center;
+              font-size: 35px;
+               margin-bottom: 1%;
+          }
+          #erro2{
+              text-align: center;
+              font-size: 25px;
           }
 
           #icone{
-              width: 30%;
+              width: 40%;
               float: left;
               margin-top: 3.5%;
+              background-color: red;
           }
           #semanal{
               margin-top: 0%;
@@ -42,13 +61,14 @@
           }
         </style>
     <body>
+        <div id="conteudo">
         <div id="titulo"><h1>{{local}}</h1></div>
         <!--<div id="conteudo" class="slideshow-container">
             <div class="mySlides fade">-->
                 <div id="icone"><script type='text/javascript' src='https://darksky.net/widget/default-small/{{lat}},{{long}}/ca12/en.js?width=100%&height=70&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=333333&fontFamily=Default&customFont=&units=ca'></script></div>
                 <div id="hoje"><script type='text/javascript' src='https://darksky.net/widget/graph-bar/{{lat}},{{long}}/ca12/en.js?width=100%&height=260&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=undefined&fontFamily=Verdana&customFont=&units=ca&timeColor=333333&tempColor=333333&currentDetailsOption=true'></script></div>
                 <div id="semanal"><script type='text/javascript' src='https://darksky.net/widget/default/{{lat}},{{long}}/ca12/en.js?width=100%&height=301&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=333333&fontFamily=Verdana&customFont=&units=ca&htColor=333333&ltColor=C7C7C7&displaySum=no&displayHeader=no'></script></div>
-                
+                </div>
                 
                 <!--<h4>Temperatura máxima</h4>
                 <p>
@@ -81,7 +101,7 @@
         <script>
             var erro = "{{erroNaoExiste}}";
             if(erro == "verdade"){
-                document.getElementById("conteudo").innerHTML= "<h1>ERRO!</h1><h3>Esse lugar não existe</h3>";
+                document.getElementById("conteudo").innerHTML= "<div id='tituloErro'><h1>{{local}}</h1></div><h1 id='erro1'>ERRO!</h1><h3 id='erro2'>Esse lugar não existe</h3>";
             }
         </script>
     </body>
