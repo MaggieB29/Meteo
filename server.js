@@ -57,7 +57,9 @@ request({
                 text04: apparentTemperature,
                 text05: precipProbability,
                 text06: windSpeed,
-                erroNaoExiste: "falso"
+                erroNaoExiste: "falso",
+                lat: body.results[0].geometry.location.lat,
+                long: body.results[0].geometry.location.lng
             })
         })
     }else{
