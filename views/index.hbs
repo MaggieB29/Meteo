@@ -2,27 +2,107 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <style>
+          * {
+              margin: 0%;
+          }
+          body{
+            font-family: Verdana, sans-serif;
+          }
+          #conteudo{
+            /*position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);*/
+          }
+          h1{
+            margin-top: 8%;
+            margin-bottom: 3%;
+            text-align: center;
+          }
+          #search{
+            text-align: center;
+            margin-bottom: 5%;
+            width: 25%;
+            margin: auto;
+          }
+          #cidade{
+            width: 75%;
+            margin-bottom: 2.5%;
+          }
+          #submitCidade{
+            width: 75%;
+          }
+          #favs{
+            text-align: center;
+            display: none;
+            opacity: 0.6;
+            transition: 0.3s;
+            background-color:	#DCDCDC;
+            color: black;
+            width: 100%;
+            margin: auto;
+          }
+          button{
+            background-color: black;
+            border: none;
+            color: grey;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 0.6;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          button:hover {opacity: 1}
+          #favs:hover {opacity: 1}
+          #Favorites{
+            text-align: center;
+            background-color: black;
+            color: grey;
+            width: 100%;
+            height: 40px;
+          }
+          #Favorites h4{
+            line-height: 39px;
+            height: 39px;
+            text-align: center;
+          }
+          #menuFavs{
+            background-color: white;
+            width: 18.75%;
+            margin: auto;
+            opacity: 0.6;
+            margin-top: 4%;
+          }
+          #menuFavs:hover {opacity: 1}
+        </style>
     </head>
     <body>
-        <h1>What's the weather?</h1>
-        <form action="/weather">
-            <input type="text" name="cidade" id="cidade">
-            <button type="submit">Give me Weather!</button>
-        </form>
-
-        <form class="form-horizontal">                      
-          <div class="row">
-            <div class="col-md-6">
-              <p id="favs-lista-texto">You don't have favs yet!</p>
-              <ul class="list-group" id="favs-lista">
-              </ul>
+          <h1>What's the weather?</h1>
+          <form id="search" action="/weather">
+              <input type="text" name="cidade" id="cidade">
+              <button id="submitCidade" type="submit"><h4>Give me Weather!</h4></button>
+          </form>
+          <div id="menuFavs">
+            <div id="Favorites"><h4>Favorites</h4></div>
+            <form id="favs" class="form-horizontal">                      
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="favs-lista-texto">You don't have favs yet!</p>
+                  <ul class="list-group" id="favs-lista">
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" id="add" class="btn btn-primary">Add Fav</button>
+                <button type="reset" id="clean"  class="btn btn-secondary">Clean up</button>
             </div>
-          </div>
-          <div class="form-group">
-            <button type="submit" id="add" class="btn btn-primary">Add Fav</button>
-            <button type="reset" id="clean"  class="btn btn-secondary">Clean up</button>
+          </form>
         </div>
-      </form>
     </body>
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -74,5 +154,19 @@
         }
       }
     });
+    
+    /*$("#favs").mouseleave(function(){
+        $("#row").hide();
+    });*/
+    document.getElementById("menuFavs").addEventListener("mouseover", mouseOver);
+    document.getElementById("menuFavs").addEventListener("mouseout", mouseOut);
+
+    function mouseOver() {
+        document.getElementById("favs").style.display = "block";
+    }
+
+    function mouseOut() {
+        document.getElementById("favs").style.display = "none";
+    }
     </script>
 </html>
