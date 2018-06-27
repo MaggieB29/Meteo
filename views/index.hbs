@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" id="submit" class="btn btn-primary">Add Fav</button>
+            <button type="submit" id="add" class="btn btn-primary">Add Fav</button>
             <button type="reset" id="clean"  class="btn btn-secondary">Clean up</button>
         </div>
       </form>
@@ -60,7 +60,8 @@
           })
 
           //Adiciona os favs
-        .submit(function(){
+
+          document.getElementById("add").onclick = function(){
            var favsLista_string = localStorage.getItem('favsLista');
            var favsLista =[];
 
@@ -70,7 +71,7 @@
            favsLista.push($("#cidade").val());
            localStorage.setItem('favsLista', JSON.stringify(favsLista));
            console.log(localStorage);
-        })
+        }
       }
     });
     </script>

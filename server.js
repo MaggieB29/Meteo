@@ -30,7 +30,7 @@ request({
     var lng = body.results[0].geometry.location.lng;
     var formatted_address = body.results[0].formatted_address;
 
-    console.log(formatted_address); //imprimi o adereço todo bonito
+    console.log(formatted_address); //imprime o adereço todo bonito
 
     request({
         url: `https://api.darksky.net/forecast/${DarkSky}/${lat},${lng}?units=si`,
@@ -42,14 +42,16 @@ request({
         var precipProbability = DSbody.currently.precipProbability;
         var highestTemperature = DSbody.daily.data[0].temperatureMax;
         var lowestTemperature = DSbody.daily.data[0].temperatureLow;
+        var windSpeed = DSbody.daily.data[0].windSpeed;
 
-        console.log(temperature, apparentTemperature, precipProbability, highestTemperature, lowestTemperature);
+        console.log(temperature, apparentTemperature, precipProbability, highestTemperature, lowestTemperature, windSpeed);
         res.render('resposta.hbs', {
             text01: highestTemperature,
             text02: lowestTemperature,
             text03: temperature,
             text04: apparentTemperature,
-            text05: precipProbability
+            text05: precipProbability,
+            text06: windSpeed
         })
     })
 });
