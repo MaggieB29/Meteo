@@ -26,34 +26,47 @@ request({
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${addressEncoded}&key=${GoogleAPI}`,
     json: true
 }, (error, response, body) => {
-    var lat = body.results[0].geometry.location.lat; //chama a latitude
-    var lng = body.results[0].geometry.location.lng;
-    var formatted_address = body.results[0].formatted_address;
+    
+    var status = body.status;
 
-    console.log(formatted_address); //imprime o adereço todo bonito
+    if(status=="OK"){
+        var lat = body.results[0].geometry.location.lat; //chama a latitude
+        var lng = body.results[0].geometry.location.lng;
+        var formatted_address = body.results[0].formatted_address;
 
-    request({
-        url: `https://api.darksky.net/forecast/${DarkSky}/${lat},${lng}?units=si`,
-        json: true
-    }, (DSerror, Dresponse, DSbody)=> {
+        console.log(formatted_address); //imprime o adereço todo bonito
 
-        var temperature = DSbody.currently.temperature;
-        var apparentTemperature = DSbody.currently.apparentTemperature;
-        var precipProbability = DSbody.currently.precipProbability;
-        var highestTemperature = DSbody.daily.data[0].temperatureMax;
-        var lowestTemperature = DSbody.daily.data[0].temperatureLow;
-        var windSpeed = DSbody.daily.data[0].windSpeed;
+        request({
+            url: `https://api.darksky.net/forecast/${DarkSky}/${lat},${lng}?units=si`,
+            json: true
+        }, (DSerror, Dresponse, DSbody)=> {
 
-        console.log(temperature, apparentTemperature, precipProbability, highestTemperature, lowestTemperature, windSpeed);
-        res.render('resposta.hbs', {
-            text01: highestTemperature,
-            text02: lowestTemperature,
-            text03: temperature,
-            text04: apparentTemperature,
-            text05: precipProbability,
-            text06: windSpeed
+            var temperature = DSbody.currently.temperature;
+            var apparentTemperature = DSbody.currently.apparentTemperature;
+            var precipProbability = DSbody.currently.precipProbability;
+            var highestTemperature = DSbody.daily.data[0].temperatureMax;
+            var lowestTemperature = DSbody.daily.data[0].temperatureLow;
+            var windSpeed = DSbody.daily.data[0].windSpeed;
+
+            console.log(temperature, apparentTemperature, precipProbability, highestTemperature, lowestTemperature, windSpeed);
+            res.render('resposta.hbs', {
+                local: address,
+                text01: highestTemperature,
+                text02: lowestTemperature,
+                text03: temperature,
+                text04: apparentTemperature,
+                text05: precipProbability,
+                text06: windSpeed,
+                erroNaoExiste: "falso"
+            })
         })
-    })
+    }else{
+        res.render('resposta.hbs', {
+            local: address,
+            erroNaoExiste: "verdade"
+        })
+    }
+    
 });
     
     //res.send(req.query.cidade);

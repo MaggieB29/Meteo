@@ -5,8 +5,8 @@
         <title>What's the weather?</title>
     </head>
     <body>
-        <h1>Tempinho</h1>
-        <div class="slideshow-container">
+        <h1>{{local}}</h1>
+        <div id="conteudo" class="slideshow-container">
             <div class="mySlides fade">
                 <img width="400px" height="400px" src="imgs/1.png" style="width:100%">
                 <h4>Temperatura máxima</h4>
@@ -37,5 +37,12 @@
             </div>
         
         </div>
+
+        <script>
+            var erro = "{{erroNaoExiste}}";
+            if(erro == "verdade"){
+                document.getElementById("conteudo").innerHTML= "<h1>ERRO!</h1><h3>Esse lugar não existe</h3>";
+            }
+        </script>
     </body>
 </html>
